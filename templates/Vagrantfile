@@ -1,0 +1,49 @@
+# https://github.com/StefanScherer/docker-windows-box/blob/master/Vagrantfile
+Vagrant.configure("2") do |config|
+  config.vm.define "wocker"
+  config.vm.guest = "windows"
+
+  config.vm.box          = "<%= @wocker_from %>"
+  config.vm.communicator = "winrm"
+  <% if @wocker_interface %>
+    config.vm.network "public_network", bridge: "<%= @wocker_interface %>"
+  <% end %>
+  <% @wocker_ports.each do |wocker_port| %>
+  config.vm.network :forwarded_port, guest: <%= wocker_port[0] %>, host: <%= wocker_port[1] %>
+  <% end %>
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+    vb.linked_clone = true
+
+    vb.customize ["modifyvm", :id, "--memory", 2048]
+    vb.customize ["modifyvm", :id, "--cpus", 2]
+    vb.customize ["modifyvm", :id, "--vram", 128]
+    vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+
+    if false
+      vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
+      vb.customize ["modifyvm", :id, "--accelerate2dvideo", "on"]
+    end
+
+    # Guest additions requires optical driver
+    vb.customize ["storageattach", :id,
+                    "--storagectl", "IDE Controller",
+                    "--port", "0", "--device", "1",
+                    "--type", "dvddrive",
+                    "--medium", "emptydrive"]
+  end
+
+  config.vm.provision "shell", inline: '&netsh "advfirewall" "set" "allprofiles" "state" "off"'
+
+  <% @wocker_runs.each do |wocker_run| %>
+    <% if wocker_run["inline"] %>
+      config.vm.provision "shell", inline: '<%= wocker_run["inline"] %>'
+    <% elsif wocker_run["path"] %>
+      config.vm.provision "shell", path: '<%= wocker_run["path"] %>'
+    <% else %>
+      raise "unknown: #{wocker_run}"
+    <% end %>
+  <% end %>
+
+  config.vm.provision :reload
+end

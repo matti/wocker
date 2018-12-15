@@ -1,0 +1,8 @@
+from: StefanScherer/windows_2019
+
+runs:
+  - path: install-chocolatey.ps1
+  - inline: choco install -y ruby
+  - inline: choco install -y nircmd
+ports:
+  - 9516:5555
