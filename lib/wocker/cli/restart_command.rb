@@ -7,6 +7,7 @@ module Wocker
         Wocker::Vagrant.run "reload"
         puts "sending control+alt+del"
         `wocker keyboard key control alt del`
+        sleep 1
         puts "writing vagrant"
         `wocker keyboard write vagrant`
         puts "pressing enter"
