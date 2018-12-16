@@ -54,8 +54,10 @@ module Wocker
               `wocker keyboard key control c`
               break
             when "\r"
+              puts ""
               `wocker keyboard key enter`
             else
+              print c
               `wocker keyboard write #{c}`
             end
 
