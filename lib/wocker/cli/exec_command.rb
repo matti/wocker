@@ -53,7 +53,7 @@ module Wocker
               `wocker keyboard write #{c}`
             end
 
-            sleep 0.1
+            sleep 0.001
           end
 
           psexec_thr.join
