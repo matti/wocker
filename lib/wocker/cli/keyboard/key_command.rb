@@ -13,7 +13,9 @@ module Wocker
           when ["control","alt","del"]
             "1d 38 53 d3 b8 9d"
           when ["enter"]
-            "1c"
+            "1c 9c"
+          when ["control","c"]
+            "1d 2e ae 9d"
           else
             puts "unknown: #{key_list.inspect}"
             exit 1
