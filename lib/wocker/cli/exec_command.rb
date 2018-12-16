@@ -47,7 +47,7 @@ module Wocker
             p c
             break if c == "\u0003"
             if c == "\r"
-              `wocker keyboard write enter`
+              `wocker keyboard key enter`
             else
               `wocker keyboard write #{c}`
             end
