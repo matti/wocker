@@ -11,5 +11,5 @@
 .rspec_status
 
 .vagrant
-Wockerfile
-Vagrantfile
+/Wockerfile
+/Vagrantfile

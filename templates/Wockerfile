@@ -1,0 +1,6 @@
+from: StefanScherer/windows_2019
+
+runs:
+  - inline: choco install -y ruby
+ports:
+  - 9516:5555
