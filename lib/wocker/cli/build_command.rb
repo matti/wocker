@@ -5,9 +5,10 @@ module Wocker
     class BuildCommand < Clamp::Command
       option "--interface", "INTERFACE", "network interface"
       option "--choco", :flag, "install chocolatey"
+      option "--restart", :flag, "restart after build"
 
       def execute
-        v = Wocker::Vagrantfile.new interface: interface, choco: choco?
+        v = Wocker::Vagrantfile.new interface: interface, choco: choco?, restart: restart?
         v.create_from_wockerfile!
 
         Wocker::Vagrant.run "destroy", "-f"

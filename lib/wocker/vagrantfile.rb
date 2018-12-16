@@ -5,6 +5,7 @@ module Wocker
     def initialize(interface: nil, choco: false)
       @interface = interface
       @choco = choco
+      @restart = restart
     end
 
     def create_from_wockerfile! *args
@@ -14,6 +15,7 @@ module Wocker
       v.wocker_ports = Wockerfile.ports
       v.wocker_interface = @interface
       v.wocker_installs = []
+      v.wocker_restart = @restart
 
       if @choco
         v.wocker_installs << File.join(Wocker.gem_root_path, "scripts", "wocker-install-chocolatey.ps1")
