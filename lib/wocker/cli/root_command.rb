@@ -19,6 +19,7 @@ module Wocker
       subcommand ["ps"], "ps", PsCommand
       subcommand ["port"], "port", PortCommand
       subcommand ["restart"], "restart", RestartCommand
+      subcommand ["init"], "init", InitCommand
 
       def self.run
         super

@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
     config.vm.network "public_network", bridge: "<%= @wocker_interface %>"
   <% end %>
   <% @wocker_ports.each do |wocker_port| %>
-  config.vm.network :forwarded_port, guest: <%= wocker_port[0] %>, host: <%= wocker_port[1] %>
+    config.vm.network :forwarded_port, guest: <%= wocker_port[0] %>, host: <%= wocker_port[1] %>
   <% end %>
   config.vm.provider "virtualbox" do |vb|
     vb.gui = true
@@ -34,6 +34,10 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell", inline: '&netsh "advfirewall" "set" "allprofiles" "state" "off"'
+
+  <% @wocker_installs.each do |wocker_install| %>
+    config.vm.provision "shell", path: "<%= wocker_install %>"
+  <% end %>
 
   <% @wocker_runs.each do |wocker_run| %>
     <% if wocker_run["inline"] %>

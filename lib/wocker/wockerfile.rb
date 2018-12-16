@@ -1,23 +1,44 @@
-require_relative '../dockerfile_parser'
+require "yaml"
 
 module Wocker
-  class Wockerfile
-    def initialize(path)
-      @path = path
+  module Wockerfile
+    @@ports = []
+    @@runs = []
+    @@from = nil
+    @@workdir = nil
+
+    def self.ports
+      parse
+      @@ports
+    end
+    def self.runs
+      parse
+      @@runs
+    end
+    def self.from
+      parse
+      @@from
+    end
+    def self.workdir
+      parse
+      @@workdir
     end
 
-    def parse
-      contents = File.read @path
+    private
+    def self.parse
+      contents = File.read "Wockerfile"
       parsed = YAML.load contents
-      if parsed["ports"]
+      @@runs = parsed["runs"]
+      @@from = parsed["from"]
+      @@workdir = parsed["workdir"]
+
+      @@ports = if parsed["ports"]
         ports_split = []
         parsed["ports"].each do |port|
           ports_split << port.split(":")
         end
-        parsed.delete "ports"
-        parsed["ports"] = ports_split
+        ports_split
       end
-      parsed
     end
   end
 end

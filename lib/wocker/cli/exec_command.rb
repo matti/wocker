@@ -6,8 +6,16 @@ module Wocker
       parameter "COMMAND ...", "command"
 
       def execute
+        command_list.insert 0, "cd"
+        workdir = if Wockerfile.workdir
+          Wockerfile.workdir
+        else
+          "/vagrant"
+        end
+        command_list.insert 1, "#{workdir};"
+
         cmd = command_list.join " "
-        Wocker::Vagrantfile.run "winrm", "-c", cmd
+        Wocker::Vagrant.run "winrm", "-c", cmd
       end
     end
   end

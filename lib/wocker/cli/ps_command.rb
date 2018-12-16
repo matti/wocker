@@ -4,7 +4,7 @@ module Wocker
   module Cli
     class PsCommand < Clamp::Command
       def execute
-        Wocker::Vagrantfile.run "status"
+        Wocker::Vagrant.run "status"
       end
     end
   end

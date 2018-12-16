@@ -5,4 +5,3 @@ if (!(Test-Path $ChocoInstallPath)) {
 }
 
 choco feature disable --name showDownloadProgress
-$env:Path += ";C:\ProgramData\Chocolatey\bin"

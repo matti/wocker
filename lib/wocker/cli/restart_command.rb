@@ -4,7 +4,7 @@ module Wocker
   module Cli
     class RestartCommand < Clamp::Command
       def execute
-        Wocker::Vagrantfile.run "reload"
+        Wocker::Vagrant.run "reload"
       end
     end
   end

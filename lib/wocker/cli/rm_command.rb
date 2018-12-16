@@ -4,7 +4,7 @@ module Wocker
   module Cli
     class RmCommand < Clamp::Command
       def execute
-        Wocker::Vagrantfile.run "destroy", "-f"
+        Wocker::Vagrant.run "destroy", "-f"
       end
     end
   end

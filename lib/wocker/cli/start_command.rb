@@ -4,7 +4,7 @@ module Wocker
   module Cli
     class StartCommand < Clamp::Command
       def execute
-        Wocker::Vagrantfile.run "up"
+        Wocker::Vagrant.run "up"
       end
     end
   end
