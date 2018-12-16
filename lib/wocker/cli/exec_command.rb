@@ -47,6 +47,7 @@ module Wocker
             case c
             when "\u0003"
               `wocker keyboard key control c`
+              break
             when "\r"
               `wocker keyboard key enter`
             else
@@ -56,7 +57,8 @@ module Wocker
             sleep 0.001
           end
 
-          psexec_thr.join
+          #psexec_thr.join
+          psexec_thr.kill
           log_tail_k.kill
 
           File.unlink "wocker-exec-out" if File.exist? "wocker-exec-out"
