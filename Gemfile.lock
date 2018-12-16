@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    wocker (0.3.8)
+    wocker (0.3.9)
       clamp
       kommando
 

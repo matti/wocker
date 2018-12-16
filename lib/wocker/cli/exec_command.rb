@@ -47,6 +47,9 @@ module Wocker
             case c
             when "\u0003"
               `wocker keyboard key control c`
+              # workarounds Terminate Batch Job Y/N
+              sleep 0.1
+              `wocker keyboard key control c`
               break
             when "\r"
               `wocker keyboard key enter`
