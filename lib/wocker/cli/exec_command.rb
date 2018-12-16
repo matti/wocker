@@ -43,6 +43,8 @@ module Wocker
 
           require 'io/console'
           loop do
+            break unless psexec_thr.alive? # if exits
+
             c = STDIN.getch
             case c
             when "\u0003"
