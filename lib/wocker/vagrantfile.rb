@@ -2,7 +2,7 @@ require 'fileutils'
 
 module Wocker
   class Vagrantfile
-    def initialize(interface: nil, choco: false)
+    def initialize(interface: nil, choco: false, restart:false)
       @interface = interface
       @choco = choco
       @restart = restart

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    wocker (0.2.3)
+    wocker (0.2.4)
       clamp
 
 GEM
