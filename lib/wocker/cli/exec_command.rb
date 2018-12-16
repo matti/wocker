@@ -44,7 +44,6 @@ module Wocker
           require 'io/console'
           loop do
             c = STDIN.getch
-            p c
             break if c == "\u0003"
             if c == "\r"
               `wocker keyboard key enter`
