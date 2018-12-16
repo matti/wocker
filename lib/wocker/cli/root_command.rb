@@ -20,6 +20,7 @@ module Wocker
       subcommand ["port"], "port", PortCommand
       subcommand ["restart"], "restart", RestartCommand
       subcommand ["init"], "init", InitCommand
+      subcommand ["keyboard"], "keyboard", KeyboardCommand
 
       def self.run
         super

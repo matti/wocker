@@ -16,5 +16,6 @@ require_relative "cli/stop_command"
 require_relative "cli/ps_command"
 require_relative "cli/port_command"
 require_relative "cli/init_command"
+require_relative "cli/keyboard_command"
 
 require_relative "cli/root_command"
